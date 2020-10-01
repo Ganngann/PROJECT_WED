@@ -1,0 +1,50 @@
+#--------------------------------------------------
+# Répertoire : /
+#--------------------------------------------------
+
+# Le serveur doit suivre les liens symboliques :
+Options +FollowSymlinks
+
+# Activation du module de réécriture d'URL :
+RewriteEngine on
+
+# --------------------------------------------------
+
+# CONNEXION
+# PATTERN: users/login/submit
+# URL: index.php?users=login
+RewriteRule ^users\/login\/submit$ index.php?users=login [L]
+
+# FORMULAIRE DE LOGIN
+# PATTERN: users/login/form
+# URL: index.php?users=loginForm
+RewriteRule ^users\/login\/form$ index.php?users=loginForm [L]
+
+# ROUTE DE LA RECHERCHE D'UN POST
+# PATTERN: posts/search
+# URL: index.php?posts=search
+RewriteRule ^posts\/search$ index.php?posts=search [L]
+
+# ROUTE DE LA PAGE CONTACT
+# PATTERN: contact
+# URL: index.php?contact
+RewriteRule ^contact$ index.php?contact [L]
+
+# ROUTE DE DETAIL D'UN TAG
+# PATTERN: tags/id/slug
+# URL: index.php?tagId=x
+RewriteRule ^tags\/([1-9][0-9]*)\/([a-z0-9][a-z0-9\-]*)$ index.php?tagId=$1 [L]
+
+# ROUTE DE DETAIL D'UNE CATEGORIE
+# PATTERN: categories/id/slug
+# URL: index.php?categorieId=x
+RewriteRule ^categories\/([1-9][0-9]*)\/([a-z0-9][a-z0-9\-]*)$ index.php?categorieId=$1 [L]
+
+# ROUTE DE DETAIL D'UN POST
+# PATTERN: posts/id/slug
+# URL: index.php?postId=x
+RewriteRule ^posts\/([1-9][0-9]*)\/([a-z0-9][a-z0-9\-]*)$ index.php?postId=$1 [L]
+
+# --------------------------------------------------
+RewriteCond %{REQUEST_URI} !\.(js|css|jpg|gif|zip|png|pdf)$ [NC]
+RewriteRule ^(.*)$ index.php [L]
